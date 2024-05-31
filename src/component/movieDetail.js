@@ -67,7 +67,7 @@ const MovieDetail = () => {
         return;
       }
 
-      const response = await axios.post('http://localhost:4000/lists/addmovie', {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}/lists/addmovie`, {
         listname: listName,
         movieId: imdbID,
         moviename: movie.Title,
@@ -91,7 +91,7 @@ const MovieDetail = () => {
         return;
       }
 
-      await axios.delete(`http://localhost:4000/lists/remove-movie/${userId}/${movieId}`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_BASE_API_URL}/lists/remove-movie/${userId}/${movieId}`);
 
       console.log('Movie removed successfully');
     } catch (error) {

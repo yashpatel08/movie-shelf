@@ -21,10 +21,10 @@ const Navbar = () => {
 
         const decodedToken = jwtDecode(token);
 
-
+  
         const fetchUserData = async (userId) => {
             try {
-                const response = await fetch(`http://localhost:4000/users/user/${userId}`, {});
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users/user/${userId}`, {});
                 if (response.ok) {
                     const responseData = await response.json();
 

@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use('/users', userRoutes);
 app.use('/lists', listRoutes);
 
-mongoose.connect('mongodb://localhost/movie_shelf')
+mongoose.connect(process.env.MONGODB_URI)
     .then('Conneted to mongodb')
     .catch(error => console.log(error));
 console.log('Conneted to mongodb');

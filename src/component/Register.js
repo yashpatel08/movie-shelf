@@ -23,7 +23,7 @@ const Register = () => {
     try {
       if (cpassword === password) {
 
-        await axios.post('http://localhost:4000/users/register', {
+        await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users/register`, {
           name,
           email, password, phone
         })

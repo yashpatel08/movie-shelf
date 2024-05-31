@@ -24,7 +24,7 @@ const Lists = () => {
 
                 const userId = userData.user._id;
                 console.log("id", userId);
-                const response = await axios.get(`http://localhost:4000/lists/lists/${userId}`);
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/lists/lists/${userId}`);
                 setData(response.data);
                 console.log(response);
             } catch (error) {
