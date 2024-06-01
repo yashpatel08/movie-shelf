@@ -14,6 +14,12 @@ app.use(cors({
     methods: ["GET", "POST","PUT","DELETE"],
     credentials: true
 }));
+
+app.use(cors({
+    origin: ["https://movie-shelf-dun.vercel.app/"],
+    methods: ["GET", "POST","PUT","DELETE"],
+    credentials: true
+}));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json());
 app.use(cookieParser());
