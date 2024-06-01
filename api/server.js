@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const port = process.env.PORT || 4000;
 app.use(cors({
-    origin: ["https://movieshelf-phi.vercel.app", "https://movie-shelf-dun.vercel.app"],
+    origin: ["https://movieshelf-phi.vercel.app", "https://movie-shelf-kappa.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
