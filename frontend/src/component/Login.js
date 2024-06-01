@@ -21,50 +21,45 @@ const Login = () => {
     await LoginValidations.validate({ email, password });
 
     try {
-      const response = await axios.post(`https://movieshelf-two.vercel.app/users/login`, {
-        email, password
+      const response = await fetch('https://movieshelf-two.vercel.app/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include'
       });
 
-      console.log(response);
+      const data = await response.json();
+      console.log(data);
 
-
-      if (response.data.status === 'success') {
-        const token = response.data.accesstoken;
+      if (data.status === 'success') {
+        const token = data.accesstoken;
 
         if (token) {
-          // Log token and save it to localStorage
           console.log('Token from response:', token);
           localStorage.setItem('jwttoken', token);
 
-          // Log token from localStorage
           console.log('Token saved in localStorage:', localStorage.getItem('jwttoken'));
-
-          // Log other details and perform actions
           console.log('Login successful');
-          console.log('Current User:', response.data.currentUser);
+          console.log('Current User:', data.currentUser);
           alert('Login Successful');
           navigate('/home');
-        }
-        else {
-          // Log if token is undefined in the response
+        } else {
           console.error('Token is undefined in the response');
         }
-      }
-      else {
-        console.log('Login unsuccessful:', response.data.message);
+      } else {
+        console.log('Login unsuccessful:', data.message);
         alert('Please check your username and password');
       }
     } catch (error) {
-      if (e.response) {
-
-        console.log('Error during login:', e.response.data);
-        console.log('Status code:', e.response.status);
-      } else if (e.request) {
-
+      if (error.response) {
+        console.log('Error during login:', error.response.data);
+        console.log('Status code:', error.response.status);
+      } else if (error.request) {
         console.log('Error login: No response received');
       } else {
-
-        console.log('Error dur login:', e.message);
+        console.log('Error during login:', error.message);
       }
     }
   }

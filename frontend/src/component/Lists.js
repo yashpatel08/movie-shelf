@@ -24,9 +24,19 @@ const Lists = () => {
 
                 const userId = userData.user._id;
                 console.log("id", userId);
-                const response = await axios.get(`https://movieshelf-two.vercel.app/lists/lists/${userId}`);
-                setData(response.data);
-                console.log(response);
+                const response = await fetch(`https://movieshelf-two.vercel.app/lists/lists/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+                setData(result);
+                console.log(result);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setData([]);
@@ -34,7 +44,7 @@ const Lists = () => {
         };
 
         fetchData();
-    }, []);
+    }, [navigate, token]);
 
 
     return (

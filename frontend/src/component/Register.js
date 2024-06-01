@@ -22,22 +22,27 @@ const Register = () => {
 
     try {
       if (cpassword === password) {
+        const response = await fetch('https://movieshelf-phi.vercel.app/api/users/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, password, phone })
+        });
 
-        await axios.post(`https://movieshelf-phi.vercel.app/api/users/register`, {
-          name,
-          email, password, phone
-        })
-          .then(result => console.log(result))
-          .catch(err => console.log(err))
-
-        routeChange();
-
-      }
-      else {
-        alert('Both password is not same');
+        if (response.ok) {
+          const result = await response.json();
+          console.log(result);
+          routeChange();
+        } else {
+          const errorData = await response.json();
+          console.log('Error:', errorData);
+        }
+      } else {
+        alert('Both passwords must be the same');
       }
     } catch (error) {
-      console.log(error);
+      console.log('Error:', error);
     }
   }
 

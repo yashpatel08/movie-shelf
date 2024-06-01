@@ -14,27 +14,27 @@ const MovieList = () => {
         if (!searchName) return;
         const uri = `http://www.omdbapi.com/?apikey=a4fbb6db&s=${searchName}`;
         try {
-            const res = await axios.get(uri);
-            if (res.data.Response === 'True') {
-                setData(res.data.Search);
-                const array = res.data.Search;
+            const res = await fetch(uri);
+            const resData = await res.json();
+            if (resData.Response === 'True') {
+                setData(resData.Search);
+                const array = resData.Search;
                 setResults(array.length);
 
-                console.log(res);
-                localStorage.setItem('searchResults', JSON.stringify(res.data.Search));
+                console.log(resData);
+                localStorage.setItem('searchResults', JSON.stringify(resData.Search));
                 localStorage.setItem('searchName', searchName);
                 localStorage.setItem('searchTime', Date.now());
             } else {
                 setData([]);
                 setResults(0);
-                console.error('Error:', res.data.Error);
+                console.error('Error:', resData.Error);
             }
         } catch (error) {
             console.error('Error fetching data:', error);
             setData([]);
         }
     };
-
 
     useEffect(() => {
         const storedResults = localStorage.getItem('searchResults');

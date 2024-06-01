@@ -19,10 +19,10 @@ const MovieDetail = () => {
     const fetchMovie = async () => {
       try {
         console.log(imdbID);
-        const response = await axios.get(`http://www.omdbapi.com/?apikey=a4fbb6db&i=${imdbID}`);
-
-        setMovie(response.data);
-        console.log(response);
+        const response = await fetch(`http://www.omdbapi.com/?apikey=a4fbb6db&i=${imdbID}`);
+        const data = await response.json();
+        setMovie(data);
+        console.log(data);
       } catch (error) {
         console.error('Error fetching movie details:', error);
       }
@@ -67,19 +67,25 @@ const MovieDetail = () => {
         return;
       }
 
-      const response = await axios.post(`https://movieshelf-two.vercel.app/lists/addmovie`, {
-        listname: listName,
-        movieId: imdbID,
-        moviename: movie.Title,
-        visible: isPublic ? 'public' : 'private',
-        user: userId
-      },);
-
-      console.log('in addinlist', response);
+      const response = await fetch(`https://movieshelf-two.vercel.app/lists/addmovie`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          listname: listName,
+          movieId: imdbID,
+          moviename: movie.Title,
+          visible: isPublic ? 'public' : 'private',
+          user: userId
+        })
+      });
+      const data = await response.json();
+      console.log('in addinlist', data);
       handleCloseModal();
     } catch (error) {
-      console.error('Error adding movie to list:', error.response ? error.response.data : error.message);
-
+      console.error('Error adding movie to list:', error.message);
     }
   };
 
@@ -91,15 +97,20 @@ const MovieDetail = () => {
         return;
       }
 
-      await axios.delete(`https://movieshelf-two.vercel.app/lists/remove-movie/${userId}/${movieId}`);
-
-      console.log('Movie removed successfully');
+      const response = await fetch(`https://movieshelf-two.vercel.app/lists/remove-movie/${userId}/${movieId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      console.log('Movie removed successfully', data);
     } catch (error) {
-      console.error('Error removing movie from list:', error);
-      console.log("movieId",movieId);
-      console.log("userId",userId);
+      console.error('Error removing movie from list:', error.message);
+      console.log("movieId", movieId);
+      console.log("userId", userId);
     }
-  }; 
+  };
   return (
     <div className="movie-detail">
       {movie ? (
