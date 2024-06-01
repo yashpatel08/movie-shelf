@@ -21,7 +21,7 @@ const Login = () => {
     await LoginValidations.validate({ email, password });
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users/login`, {
+      const response = await axios.post(`https://movieshelf-phi.vercel.app/users/login`, {
         email, password
       });
 
