@@ -12,9 +12,11 @@ import Register from './component/Register';
 import Navbar from './component/Navbar';
 import List from './component/Lists';
 import Profile from './component/Profile';
+import axios from 'axios';
 
 const App = () => {
 
+  axios.defaults.withCredentials=true;
   return (
     <div className='app'>
       <BrowserRouter>
