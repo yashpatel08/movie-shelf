@@ -24,7 +24,7 @@ const Navbar = () => {
   
         const fetchUserData = async (userId) => {
             try {
-                const response = await fetch(`https://movieshelf-phi.vercel.app/users/user/${userId}`, {});
+                const response = await fetch(`https://movieshelf-phi.vercel.app/api/users/user/${userId}`, {});
                 if (response.ok) {
                     const responseData = await response.json();
 

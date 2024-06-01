@@ -21,7 +21,7 @@ const Login = () => {
     await LoginValidations.validate({ email, password });
 
     try {
-      const response = await axios.post(`https://movieshelf-phi.vercel.app/users/login`, {
+      const response = await axios.post(`https://movieshelf-phi.vercel.app/api/users/login`, {
         email, password
       });
 
