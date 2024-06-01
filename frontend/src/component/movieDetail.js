@@ -67,7 +67,7 @@ const MovieDetail = () => {
         return;
       }
 
-      const response = await axios.post(`https://movieshelf-phi.vercel.app/api/lists/addmovie`, {
+      const response = await axios.post(`movieshelf-fzaj2v3uu-yashpatel08s-projects.vercel.app/lists/addmovie`, {
         listname: listName,
         movieId: imdbID,
         moviename: movie.Title,
@@ -91,7 +91,7 @@ const MovieDetail = () => {
         return;
       }
 
-      await axios.delete(`https://movieshelf-phi.vercel.app/api/lists/remove-movie/${userId}/${movieId}`);
+      await axios.delete(`movieshelf-fzaj2v3uu-yashpatel08s-projects.vercel.app/lists/remove-movie/${userId}/${movieId}`);
 
       console.log('Movie removed successfully');
     } catch (error) {

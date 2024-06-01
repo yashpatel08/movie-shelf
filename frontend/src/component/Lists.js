@@ -24,7 +24,7 @@ const Lists = () => {
 
                 const userId = userData.user._id;
                 console.log("id", userId);
-                const response = await axios.get(`https://movieshelf-phi.vercel.app/api/lists/lists/${userId}`);
+                const response = await axios.get(`movieshelf-fzaj2v3uu-yashpatel08s-projects.vercel.app/lists/lists/${userId}`);
                 setData(response.data);
                 console.log(response);
             } catch (error) {
