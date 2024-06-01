@@ -61,10 +61,10 @@ const Login = () => {
         console.log('Status code:', e.response.status);
       } else if (e.request) {
 
-        console.log('Error during login: No response received');
+        console.log('Error login: No response received');
       } else {
 
-        console.log('Error during login:', e.message);
+        console.log('Error dur login:', e.message);
       }
     }
   }
