@@ -16,7 +16,7 @@ app.use(cors({
 }));
 
 app.use(cors({
-    origin: ["https://movie-shelf-dun.vercel.app/"],
+    origin: ["https://movie-shelf-dun.vercel.app"],
     methods: ["GET", "POST","PUT","DELETE"],
     credentials: true
 }));
