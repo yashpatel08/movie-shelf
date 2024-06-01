@@ -36,7 +36,7 @@ exports.Login = async (req, res) => {
 
             const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
         
-            if (isPasswordValid) {
+            if (isPasswordValid) { 
                 const token = await user.generateAuthToken();
                 // console.log(token);
 
