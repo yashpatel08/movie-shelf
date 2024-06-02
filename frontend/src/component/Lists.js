@@ -24,7 +24,7 @@ const Lists = () => {
 
                 const userId = userData.user._id;
                 console.log("id", userId);
-                const response = await fetch(`https://movieshelf-two.vercel.app/lists/lists/${userId}`, {
+                const response = await fetch(`${process.env.BASE_URL}/lists/lists/${userId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
