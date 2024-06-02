@@ -22,7 +22,7 @@ const Register = () => {
 
     try {
       if (cpassword === password) {
-        const response = await axios.post('https://movieshelf-two.vercel.app//users/register', {
+        const response = await axios.post('https://movieshelf-two.vercel.app/users/register', {
           name,
           email,
           password,
