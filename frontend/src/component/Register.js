@@ -34,7 +34,7 @@ const Register = () => {
         });
 
 
-        if (response.ok) {
+        if (response.status === 200) {
           const result = await response.json();
           console.log(result);
           routeChange();
