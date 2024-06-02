@@ -67,19 +67,17 @@ const MovieDetail = () => {
         return;
       }
 
-      const response = await fetch(`https://movieshelf-two.vercel.app/lists/addmovie`, {
-        method: 'POST',
+      const response = await axios.post('https://movieshelf-two.vercel.app/lists/addmovie', {
+        listname: listName,
+        movieId: imdbID,
+        moviename: movie.Title,
+        visible: isPublic ? 'public' : 'private',
+        user: userId
+      }, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          listname: listName,
-          movieId: imdbID,
-          moviename: movie.Title,
-          visible: isPublic ? 'public' : 'private',
-          user: userId
-        })
+        }
       });
       const data = await response.json();
       console.log('in addinlist', data);
@@ -97,8 +95,7 @@ const MovieDetail = () => {
         return;
       }
 
-      const response = await fetch(`https://movieshelf-two.vercel.app/lists/remove-movie/${userId}/${movieId}`, {
-        method: 'DELETE',
+      const response = await axios.delete(`https://movieshelf-two.vercel.app/lists/remove-movie/${userId}/${movieId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

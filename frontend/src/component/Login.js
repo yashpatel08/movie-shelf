@@ -21,13 +21,13 @@ const Login = () => {
     await LoginValidations.validate({ email, password });
 
     try {
-      const response = await fetch('https://movieshelf-two.vercel.app/users/login', {
-        method: 'POST',
+      const response = await axios.post('https://movieshelf-two.vercel.app/users/login', {
+        email,
+        password
+      }, {
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password }),
-        credentials: 'include'
+        }
       });
 
       const data = await response.json();

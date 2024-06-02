@@ -22,13 +22,17 @@ const Register = () => {
 
     try {
       if (cpassword === password) {
-        const response = await fetch('https://movieshelf-phi.vercel.app/users/register', {
-          method: 'POST',
+        const response = await axios.post('https://movieshelf-phi.vercel.app/users/register', {
+          name,
+          email,
+          password,
+          phone
+        }, {
           headers: {
             'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ name, email, password, phone })
+          }
         });
+
 
         if (response.ok) {
           const result = await response.json();
