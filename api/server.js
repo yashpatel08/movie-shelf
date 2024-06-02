@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const port = process.env.PORT || 4000;
 app.use(cors({
-    origin: [ "https://movie-shelf-nine.vercel.app"],
+    origin: "https://movie-shelf-nine.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
@@ -25,7 +25,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cors());
 
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json());
@@ -34,7 +33,7 @@ app.use('/users', userRoutes);
 app.use('/lists', listRoutes);
 
 mongoose.connect(process.env.MONGODB_URI)
-    .then('Conneted to mongodb')
+    .then(() => console.log('Connected to MongoDB')) 
     .catch(error => console.log(error));
 console.log('Conneted to mongodb');
 
