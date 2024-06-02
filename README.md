@@ -17,8 +17,9 @@ Welcome to MovieShelf! MovieShelf is your ultimate movie companion, where you ca
 ## Demo
 
 Check out our demo video to see MovieShelf in action: 
+  
 
-https://github.com/yashpatel08/movie-shelf/assets/94280370/0c32a373-7fb4-445d-a811-8f65ff773cdd
+https://github.com/yashpatel08/movie-shelf/assets/94280370/2a3c7a7e-e449-43ad-abbd-768e171e7666
 
 
 
