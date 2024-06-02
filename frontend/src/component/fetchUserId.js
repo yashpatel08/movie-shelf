@@ -11,7 +11,7 @@ const fetchUserId = async () => {
   const userId = decodedToken._id.toString();
 
   try {
-    const response = await fetch(`https://movieshelf-two.vercel.app//users/user/${userId}`, {});
+    const response = await fetch(`https://movieshelf-two.vercel.app/users/user/${userId}`, {});
     if (response.ok) {
       const responseData = await response.json();
       console.log("from fetchUserId", responseData);
