@@ -19,7 +19,7 @@ const MovieDetail = () => {
     const fetchMovie = async () => {
       try {
         console.log(imdbID);
-        const response = await fetch(`http://www.omdbapi.com/?apikey=a4fbb6db&i=${imdbID}`);
+        const response = await fetch(`https://www.omdbapi.com/?apikey=a4fbb6db&i=${imdbID}`);
         const data = await response.json();
         setMovie(data);
         console.log(data);

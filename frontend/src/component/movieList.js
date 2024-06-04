@@ -12,7 +12,7 @@ const MovieList = () => {
 
     const fetchData = async (searchName) => {
         if (!searchName) return;
-        const uri = `http://www.omdbapi.com/?apikey=a4fbb6db&s=${searchName}`;
+        const uri = `https://www.omdbapi.com/?apikey=a4fbb6db&s=${searchName}`;
         try {
             const res = await fetch(uri);
             const resData = await res.json();
