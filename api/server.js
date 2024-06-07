@@ -9,14 +9,16 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const port = process.env.PORT || 4000;
 
-const corsOptions ={
-    origin:'*', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200,
- } 
+const corsOptions = {
+    origin: 'https://movie-shelf-nine.vercel.app',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization',
+    credentials: true
+};
 
 
 app.use(cors(corsOptions)); 
+app.options('*', cors(corsOptions));
 
 app.get("/", (req, res) => res.send("You are on Vercel"));
 
