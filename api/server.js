@@ -11,8 +11,8 @@ const port = process.env.PORT || 4000;
 
 const corsOptions = {
     origin: 'https://movie-shelf-nine.vercel.app',
-    methods: 'GET, POST, PUT, DELETE, OPTIONS',
-    allowedHeaders: 'Content-Type, Authorization',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
 
