@@ -382,6 +382,9 @@ input:focus{
 
 @media (max-width: 768px) {
 
+    html,body{
+      overflow-x: hidden;
+    }
     .navbar{
       gap: 2.3vh;
     }
@@ -396,24 +399,34 @@ input:focus{
       margin-right: 2.5vh;
     }
     .movieshelf-intro{
-      width: 49vh;
+      display: flex;
+      padding: .5vh;
+      width: 100%;
       text-wrap: wrap;
     }
 
     .search{
+      width: 30vh;
       text-indent: 3vh;
     }
 
     .totalcount{
-      margin-right: 6vh;
+      margin-right: 0vh;
     }
 
     .movie-list{
       justify-content: center;
       display: flex;
+      justify-content: center;
       flex-direction: column;
+      align-items: center;
       margin-left: 0;
-      padding-left: 3vh;
+      padding: 0;
+      width: 100%;
+    }
+
+    .movie{
+      width: 43vh;
     }
     
     .movie h2{
@@ -425,41 +438,49 @@ input:focus{
 
     .detail-container{
       display: flex;
+      width: 100%;
       justify-content: center;
       text-align: center;
       flex-direction: column;
     }
 
     .left,.right{
-      width: 55vh;
+      width: 100%;
     }
 
+    .movieDetail{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     .right{
       display: flex;
       flex-direction: column;
-      padding-left: 5vh;
+      padding: 1vh;
       justify-content: center;
     }
 
     .other-details{
       display: flex;
+      padding-left: 0;
       flex-direction: column;
     }
 
     .other1,.other2{
-      
+      width: 98%;
       padding-left: 0;
       margin-left: 0vh;
     }
 
     .other2{
-      margin-left: 15vh;
       margin-top: 5vh;
       margin-bottom: 8vh;
     }
 
     .other1{
-      margin-left: 2.5vh;
+      padding: 1vh;
     }
 
     .list-container{
