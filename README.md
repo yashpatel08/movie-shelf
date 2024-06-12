@@ -16,9 +16,9 @@ Welcome to MovieShelf! MovieShelf is your ultimate movie companion, where you ca
 
 ## Demo Video & Live Link
 
-### Live Link
-<a href="https://movie-shelf-nine.vercel.app" target="_blank">Live</a>
-
+<h1>
+<a href="https://movie-shelf-nine.vercel.app" target="_blank">Live Link</a>
+</h1>
 Check out our demo video to see MovieShelf in action: 
   
 
