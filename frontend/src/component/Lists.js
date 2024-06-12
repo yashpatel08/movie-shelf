@@ -24,7 +24,7 @@ const Lists = () => {
 
                 const userId = userData.user._id;
                 console.log("id", userId);
-                const response = await fetch(`${process.env.BASE_URL}`+`/lists/lists/${userId}`, {
+                const response = await fetch(`https://movie-shelfbackend.onrender.com/lists/lists/${userId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
