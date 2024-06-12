@@ -9,6 +9,15 @@ const Navbar = () => {
     const navigate = useNavigate();
     useEffect(() => {
 
+        if (!token) {
+            
+                let path = `/register`;
+                navigate(path);
+                return;
+        }
+
+        const decodedToken = jwtDecode(token);
+
   
         const fetchUserData = async (userId) => {
             try {
