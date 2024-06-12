@@ -34,7 +34,7 @@ const Lists = () => {
                     throw new Error('Network response was not ok');
                 }
 
-                const result = await response.data;
+                const result = await response.json();
                 setData(result);
                 console.log(result);
             } catch (error) {

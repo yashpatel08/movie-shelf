@@ -13,7 +13,7 @@ const fetchUserId = async () => {
   try {
     const response = await fetch(`https://movie-shelfbackend.onrender.com/users/user/${userId}`, {});
     if (response.ok) {
-      const responseData = await response.data;
+      const responseData = await response.json();
       console.log("from fetchUserId", responseData);
       if (responseData) {
         return responseData;
