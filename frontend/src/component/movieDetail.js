@@ -67,7 +67,7 @@ const MovieDetail = () => {
         return;
       }
 
-      const response = await axios.post(`${process.env.BASE_URL}/lists/addmovie`, {
+      const response = await axios.post(`${process.env.BASE_URL}`+`/lists/addmovie`, {
         listname: listName,
         movieId: imdbID,
         moviename: movie.Title,
@@ -95,7 +95,7 @@ const MovieDetail = () => {
         return;
       }
 
-      const response = await axios.delete(`${process.env.BASE_URL}/lists/remove-movie/${userId}/${movieId}`, {
+      const response = await axios.delete(`${process.env.BASE_URL}`+`/lists/remove-movie/${userId}/${movieId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
