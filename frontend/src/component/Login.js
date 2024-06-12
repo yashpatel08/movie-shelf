@@ -30,7 +30,7 @@ const Login = () => {
         }
       });
 
-      const data = await response.data();
+      const data = await response();
       console.log(data);
 
       if (data.status === 'success') {
