@@ -79,7 +79,7 @@ const MovieDetail = () => {
           'Authorization': `Bearer ${token}`
         }
       });
-      const data = await response.json();
+      const data = await response.data;
       console.log('in addinlist', data);
       handleCloseModal();
     } catch (error) {
@@ -100,7 +100,7 @@ const MovieDetail = () => {
           'Authorization': `Bearer ${token}`
         }
       });
-      const data = await response.json();
+      const data = await response.data;
       console.log('Movie removed successfully', data);
     } catch (error) {
       console.error('Error removing movie from list:', error.message);
