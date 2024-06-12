@@ -17,9 +17,7 @@ const corsOptions = {
 };
 
 
-app.use(cors({
-    origin: 'https://movie-shelf-nine.vercel.app'
-}));
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json());
 app.use(cookieParser());
