@@ -12,7 +12,7 @@ const Lists = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                
+
                 const userData = await fetchUserId();
                 setUserData(userData.user);
                 console.log("user", userData);
@@ -53,18 +53,21 @@ const Lists = () => {
                         <div key={index} className='list'>
                             <div className="list1">
 
-                            <h3>List {index + 1}</h3>
-                            <p>List Name: <span>{list.listname.replace(`_${list.user}`, '')}</span></p>
-                            {/* <p>User: {userdata.name}</p> */}
-                            <p>Visiblity: {list.visible}</p>
+                                <h3>List {index + 1}</h3>
+                                <p>List Name: <span>{list.listname.replace(`_${list.user}`, '')}</span></p>
+                                {/* <p>User: {userdata.name}</p> */}
+                                <p>Visiblity: {list.visible}</p>
                             </div>
                             <h4>Movies:</h4>
                             <ul>
                                 <div className="list-movielist">
-
-                                {list.movies.map((movie, movieIndex) => (
-                                    <li key={movieIndex}>{movie.moviename}</li>
-                                ))}
+                                    {list.movies && list.movies.length > 0 ? (
+                                        list.movies.map((movie, movieIndex) => (
+                                            <li key={movieIndex}>{movie.moviename}</li>
+                                        ))
+                                    ) : (
+                                        <p>Please add movies to the list.</p>
+                                    )}
                                 </div>
                             </ul>
                         </div>
