@@ -13,11 +13,6 @@ const Lists = () => {
         const fetchData = async () => {
             try {
                 
-                setTimeout(() => {
-                    let path = '/register';
-                    navigate(path);
-                    return;
-                }, 5000);
                 const userData = await fetchUserId();
                 setUserData(userData.user);
                 console.log("user", userData);
