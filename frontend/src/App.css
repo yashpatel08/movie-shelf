@@ -382,8 +382,17 @@ input:focus{
 
 @media (max-width: 768px) {
 
+  
     html,body{
       overflow-x: hidden;
+    }
+
+    .main-list{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     .navbar{
       gap: 2.3vh;
