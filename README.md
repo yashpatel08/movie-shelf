@@ -14,8 +14,8 @@ Welcome to MovieShelf! MovieShelf is your ultimate movie companion, where you ca
   
 - **Access Anywhere:** Enjoy MovieShelf on any device, ensuring a seamless movie-watching experience across platforms.
 
-## Demo
-
+## Demo Video & Live Link
+## [Live Link](https://movie-shelf-nine.vercel.app)
 Check out our demo video to see MovieShelf in action: 
   
 
