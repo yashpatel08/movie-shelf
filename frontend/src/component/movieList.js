@@ -15,7 +15,7 @@ const MovieList = () => {
         const uri = `https://www.omdbapi.com/?apikey=a4fbb6db&s=${searchName}`;
         try {
             const res = await fetch(uri);
-            const resData = await res.data;
+            const resData = await res.json();
             if (resData.Response === 'True') {
                 setData(resData.Search);
                 const array = resData.Search;
