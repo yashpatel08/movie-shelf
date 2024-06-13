@@ -62,7 +62,7 @@ const Register = () => {
           <input type='password' placeholder='Confirm Password' onChange={(e) => { setCpassword(e.target.value) }} name='cpassword' className='reg-item' />
 
           <button className='reg-btn'>Register</button>
-          <Link to="/login" className='login-btn' >Already have an account! Login</Link>
+          <Link to="/login" className='login-btnn' >Already have an account! Login</Link>
 
         </form>
       </div>

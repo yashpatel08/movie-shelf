@@ -407,8 +407,13 @@ input:focus{
       display: none;
     }
 
+    .profile-details button{
+      margin-left: 0;
+    }
+
     .signout-btn{
       margin-left: 0vh;
+      width: 5vh;
     }
     .main-nav{
       display: flex;
