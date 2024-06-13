@@ -407,6 +407,9 @@ input:focus{
       display: none;
     }
 
+    .signout-btn{
+      margin-left: 2vh;
+    }
     .main-nav{
       display: flex;
       flex-direction: column;
