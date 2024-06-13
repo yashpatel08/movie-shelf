@@ -10,15 +10,15 @@ const Navbar = () => {
     useEffect(() => {
 
         if (!token) {
-            
-                let path = `/register`;
-                navigate(path);
-                return;
+
+            let path = `/register`;
+            navigate(path);
+            return;
         }
 
         const decodedToken = jwtDecode(token);
 
-  
+
         const fetchUserData = async (userId) => {
             try {
                 const response = await fetch(`https://movie-shelfbackend.onrender.com/users/user/${userId}`, {});
@@ -30,7 +30,7 @@ const Navbar = () => {
                         setIsAdmin(userData.admin);
                         console.log('admin:', userData.admin);
                     } else {
-                        console.error('User not found');    
+                        console.error('User not found');
                     }
                 } else {
                     console.error('Error fetching user data:', response.statusText);
