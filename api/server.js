@@ -26,7 +26,7 @@ app.use('/users', userRoutes);
 app.use('/lists', listRoutes);
 
 
-app.get("/", (req, res) => res.send("You are on Vercel"));
+app.get("/", (req, res) => res.send("Your backend is going well"));
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('Connected to MongoDB'))
