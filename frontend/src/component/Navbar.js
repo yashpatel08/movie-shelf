@@ -6,7 +6,18 @@ const Navbar = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const token = localStorage.getItem('jwttoken');
     // const decodedToken = jwtDecode(token);
+    const [isMenuClicked, setIsMenuClicked] = useState(false);
     const navigate = useNavigate();
+
+
+    const toggleMenu = () => {
+        setIsMenuClicked(!isMenuClicked);
+    };
+
+    const closeMenu = () => {
+        setIsMenuClicked(false);
+    };
+
     useEffect(() => {
 
         if (!token) {
@@ -65,7 +76,37 @@ const Navbar = () => {
                         <Link to="/register" className='nav-items'>Register</Link>
                     </div>
                 )}
+
             </div>
+
+            <div className='res-container'>
+                <h4 className='title'>MovieShelf</h4>
+                <button className='toggle-btn' onClick={toggleMenu}>
+                    <i className={isMenuClicked ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
+                </button>
+            </div>
+
+
+            {isMenuClicked && (
+                <div className='res-nav'>
+                    <Link to='/home' className='nav-items' onClick={closeMenu}>Home</Link>
+                    <Link to='/lists' className='nav-items' onClick={closeMenu}>Lists</Link>
+                    {isAdmin && (
+                        <div className="admin-section">
+                            <Link to="/admin/dashboard" className="nav-items" onClick={closeMenu}>Admin Dashboard</Link>
+                        </div>
+                    )}
+                    {token ? (
+                        <Link to="/profile" className='nav-items' onClick={closeMenu}>Profile</Link>
+                    ) : (
+                        <div className='sub-items'>
+                            <Link to="/login" className='nav-items' onClick={closeMenu}>Login</Link>
+                            <Link to="/register" className='nav-items' onClick={closeMenu}>Register</Link>
+                        </div>
+                    )}
+                </div>
+            )}
+
         </div>
     )
 }

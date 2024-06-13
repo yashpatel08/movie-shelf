@@ -380,11 +380,92 @@ input:focus{
   background-color: red;
 }
 
+
+.res-container , .res-nav{
+  display: none;
+}
+
+
+
 @media (max-width: 768px) {
 
   
     html,body{
       overflow-x: hidden;
+    }
+
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    .content{
+      margin-top: 4vh;
+    }
+
+    .navbar{
+      display: none;
+    }
+
+    .main-nav{
+      display: flex;
+      flex-direction: column;
+      gap: 2vh;
+    }
+    .res-container{
+      width: 93%;
+      position: fixed;
+      display: flex;
+      flex-direction: row;
+      padding: 2vh;
+      border-bottom: 1px solid rgb(177, 216, 128);
+      justify-content: space-between;
+    }
+
+    .nav-items{
+      margin: 0;
+      transition: .5s ease-in;
+      text-align: center;
+      animation: smooth .8s linear;
+      padding-bottom: 2vh;
+    }
+    .res-nav , .active{
+      position: fixed;
+      width: 100%;
+      display: flex;
+      margin-top: 7.5vh;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @keyframes smooth {
+      0% {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+    25% {
+        opacity: 0;
+        transform: translateX(-150px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(-100px);
+    }
+    75% {
+        opacity: 0.7;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+  }
+ 
+    .sub-items{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
     }
 
     .main-list{
@@ -518,9 +599,5 @@ input:focus{
     }
     .list-movielist li{
       margin-left: 1vh;
-    }
-
-    .nav-items{
-      margin-left: 0;
     }
 }
