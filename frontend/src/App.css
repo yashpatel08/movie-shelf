@@ -411,6 +411,7 @@ input:focus{
       display: flex;
       flex-direction: column;
       gap: 2vh;
+      padding-bottom: 3vh;
     }
     .res-container{
       width: 93%;
