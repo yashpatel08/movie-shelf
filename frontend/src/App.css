@@ -408,7 +408,7 @@ input:focus{
     }
 
     .signout-btn{
-      margin-left: 2vh;
+      margin-left: 0vh;
     }
     .main-nav{
       display: flex;
