@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginValidations from '../validations/LoginValidations';
 import axios from 'axios';
 import fetchUserId from './fetchUserId'; 
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Login = () => {
             console.error('Error fetching user data:', fetchError.message);
           }
 
-          alert('Login Successful');
+          toast.success('🎉 Login Successful');
           setLoading(false);
           navigate('/home');
         } else {
@@ -61,7 +62,7 @@ const Login = () => {
         }
       } else {
         console.log('Login unsuccessful:', data.message);
-        alert('Please check your username and password');
+        toast.error('⚠️ Please check your email and password');
       }
     } catch (error) {
       if (error.response) {

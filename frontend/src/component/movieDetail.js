@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import fetchUserId from './fetchUserId';
+import { toast } from 'react-toastify';
 
 const MovieDetail = () => {
   const { imdbID } = useParams();
@@ -82,8 +83,12 @@ const MovieDetail = () => {
       const data = await response.data;
       console.log('in addinlist', data);
       handleCloseModal();
+      toast.success('🎉 Movie added to list successfully');
+
     } catch (error) {
       console.error('Error adding movie to list:', error.message);
+      toast.error('⚠️ An error occurred while adding movie to list , try later');
+ 
     }
   };
 
@@ -102,10 +107,14 @@ const MovieDetail = () => {
       });
       const data = await response.data;
       console.log('Movie removed successfully', data);
+      toast.success('🎉 Movie removed from list successfully');
+
     } catch (error) {
       console.error('Error removing movie from list:', error.message);
       console.log("movieId", movieId);
       console.log("userId", userId);
+      toast.error('⚠️ An error occurred while removing movie from list, try later'); 
+
     }
   };
   return (

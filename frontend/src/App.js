@@ -13,6 +13,8 @@ import Navbar from './component/Navbar';
 import List from './component/Lists';
 import Profile from './component/Profile';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
 
@@ -22,7 +24,8 @@ const App = () => {
       <BrowserRouter>
         <div className='app-container'>
           <Navbar />
-          <div className='content'>
+          <div className='content'>            
+          <ToastContainer theme="dark"/>
             <Routes>
               <Route exact path='*' element={<Home />} />
               <Route path='/movies' element={<MovieList />} />

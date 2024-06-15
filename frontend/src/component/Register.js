@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { toast} from 'react-toastify';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -39,16 +40,18 @@ const Register = () => {
         if (response.status === 200) {
           const result = await response.data;
           console.log(result);
+          toast.success('🎉 Registration successful!');
           routeChange();
         } else {
           const errorData = await response.json();
           console.log('Error:', errorData);
         }
       } else {
-        alert('Both passwords must be the same');
+        toast.error('⚠️ Both passwords must be the same');
       }
     } catch (error) {
-      console.log('Error:', error);
+      console.log('Error during registration:', error);
+      toast.error('❌ An error occurred during registration. Please try with different email again.');
     } finally {
       setLoading(false);
     }

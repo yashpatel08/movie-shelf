@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 const Profile = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -35,6 +37,8 @@ const Profile = () => {
         localStorage.removeItem('userData');
         let path = `/users/login`;
         navigate(path);
+        toast.success('👋 You have been signed out'); 
+
     };
     return (
         <div>
