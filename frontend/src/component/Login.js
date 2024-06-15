@@ -40,9 +40,16 @@ const Login = () => {
           console.log('Token from response:', token);
           localStorage.setItem('jwttoken', token);
 
-          console.log('Token saved in localStorage:', localStorage.getItem('jwttoken'));
           console.log('Login successful');
-          console.log('Current User:', data.currentUser);
+
+          try {
+            const userData = await fetchUserId(token);
+            localStorage.setItem('userData', JSON.stringify(userData));
+            console.log('User data fetched and stored:', userData);
+          } catch (fetchError) {
+            console.error('Error fetching user data:', fetchError.message);
+          }
+
           alert('Login Successful');
           navigate('/home');
         } else {
