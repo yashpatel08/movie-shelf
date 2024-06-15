@@ -12,7 +12,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
 
   const routeChange = () => {
-    let path = `/users/login`;
+    let path = `/login`;
     navigate(path);
   }
 
@@ -67,7 +67,7 @@ const Register = () => {
 
           <button className='reg-btn' type='submit' disabled={loading}>
             {loading ? 'Loading...' : 'Register'}
-          </button>
+          </button> 
           <Link to="/login" className='login-btnn' >Already have an account! Login</Link>
 
         </form>
