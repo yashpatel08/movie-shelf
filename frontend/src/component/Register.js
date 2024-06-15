@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState([]);
   const [phone, setPhone] = useState([]);
   const [cpassword, setCpassword] = useState([]);
-
+  const [loading, setLoading] = useState(false);
 
   const routeChange = () => {
     let path = `/users/login`;
@@ -19,6 +19,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+
+    setLoading(true);
 
     try {
       if (cpassword === password) {
@@ -47,6 +49,8 @@ const Register = () => {
       }
     } catch (error) {
       console.log('Error:', error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -61,7 +65,9 @@ const Register = () => {
           <input type='password' placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} name='password' className='reg-item' />
           <input type='password' placeholder='Confirm Password' onChange={(e) => { setCpassword(e.target.value) }} name='cpassword' className='reg-item' />
 
-          <button className='reg-btn'>Register</button>
+          <button className='reg-btn' type='submit' disabled={loading}>
+            {loading ? 'Loading...' : 'Register'}
+          </button>
           <Link to="/login" className='login-btnn' >Already have an account! Login</Link>
 
         </form>

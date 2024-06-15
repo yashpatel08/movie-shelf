@@ -9,6 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState([]);
   const [password, setPassword] = useState([]);
   const token = localStorage.getItem('jwttoken');
+  const [loading, setLoading] = useState(false);
 
   axios.defaults.withCredentials = true;
   // const routeChange = () => {
@@ -20,6 +21,7 @@ const Login = () => {
 
     e.preventDefault();
     await LoginValidations.validate({ email, password });
+    setLoading(true);
 
     try {
       const response = await axios.post(`https://movie-shelfbackend.onrender.com/users/login`, {
@@ -52,6 +54,7 @@ const Login = () => {
           }
 
           alert('Login Successful');
+          setLoading(false);
           navigate('/home');
         } else {
           console.error('Token is undefined in the response');
@@ -79,7 +82,9 @@ const Login = () => {
         <form className='login-form' onSubmit={handleSubmit}>
           <input type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} name='email' className='login-item' />
           <input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} name='password' className='login-item' />
-          <button className='login-btn'>Login</button>
+          <button className='login-btn' type='submit' disabled={loading}>
+            {loading ? 'Loading...' : 'Login'}
+          </button>
           <Link to="/register" className=''>Did't have account?Register</Link> 
 
         </form>
