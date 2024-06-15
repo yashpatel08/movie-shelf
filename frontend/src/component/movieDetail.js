@@ -13,6 +13,7 @@ const MovieDetail = () => {
   const [isPublic, setIsPublic] = useState(false);
   const [userId, setUserId] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem('jwttoken');
   
@@ -60,7 +61,7 @@ const MovieDetail = () => {
 
   const addInList = async () => {
     try {
-
+      setLoading(true);
       console.log("id", userId);
       if (!token) {
         navigate('/login');
@@ -83,6 +84,7 @@ const MovieDetail = () => {
       const data = await response.data;
       console.log('in addinlist', data);
       handleCloseModal();
+      setLoading(false);
       toast.success('🎉 Movie added to list successfully');
 
     } catch (error) {
@@ -182,7 +184,9 @@ const MovieDetail = () => {
               <input type="checkbox" checked={isPublic} onChange={handleCheckboxChange} />
               Public List
             </label>
-            <button className='add-button' onClick={() => addInList(imdbID)}>Add</button>
+            <button className='add-button' onClick={() => addInList(imdbID)}>
+            {loading ? 'Please Wait...' : 'Add'}
+            </button>
 
           </div>
         </div>

@@ -54,7 +54,7 @@ const Navbar = () => {
         // Call this function with the user ID obtained from the decoded token
         fetchUserData(decodedToken._id.toString());
 
-    }, []);
+    }, []); 
 
     return (
         <div className='main-nav'>

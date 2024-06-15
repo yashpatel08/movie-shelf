@@ -421,6 +421,8 @@ input:focus{
     .res-container{
       width: 93%;
       position: fixed;
+      z-index: 1;
+      background-color: black;
       display: flex;
       flex-direction: row;
       padding: 2vh;
