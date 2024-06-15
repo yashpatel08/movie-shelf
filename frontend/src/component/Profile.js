@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import fetchUserId from './fetchUserId';
 import {useNavigate } from 'react-router-dom';
 const Profile = () => {
     const navigate = useNavigate();
