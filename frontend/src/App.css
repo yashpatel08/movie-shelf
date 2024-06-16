@@ -399,6 +399,83 @@ input:focus{
 }
 
 
+
+.main-foot{
+  margin-top: 5vh;
+  display: flex;
+  height: 30vh;
+  flex-direction: row;
+  margin-bottom: 0;
+  justify-content: space-evenly;
+  border-top: 1px solid rgb(164, 226, 89);
+}
+
+.foot1, .foot2 , .foot3{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.content{
+  min-height: 55vh;
+}
+
+.foot-input,.foot-texta{
+  margin-bottom: 2vh;
+  border: 1px solid;
+}
+
+.foot-texta:hover , .foot-input:hover{
+  border: 1px solid rgb(132, 0, 255);
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.foot-send{
+    width: 15vh;
+    height: 5vh;
+}
+
+.foot-send:hover{
+  background-color: rgb(71, 152, 0);
+  color: black;
+}
+
+.foot-icon{
+  display: flex;
+  flex-direction: row;
+  gap: 3vh;
+}
+
+.foot-icon a{
+  font-size: 3.5vh; 
+  width: 4vh;
+  height: 4vh;
+}
+
+.foot-icon a:hover{
+  opacity: 60%;
+}
+
+.foot-send::after{
+  background-color: rgb(42, 87, 2);
+}
+
+.foot-form{
+  display: flex;
+  flex-direction: column; 
+}
+
+.foot2 h4{
+  margin-bottom: 0;
+}
+
+
 @media (max-width: 768px) {
 
   
@@ -622,5 +699,47 @@ input:focus{
     }
     .list-movielist li{
       margin-left: 1vh;
+    }
+
+    .main-foot{
+      display: flex;
+      height: 55vh;
+      text-align: center;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 2vh;
+    }
+
+    .foot-input, .foot-texta{
+      width: 30vh;
+    }
+
+    .foot2 h4{
+      margin-top: 5vh;
+      margin-bottom: 0;
+    }
+    .foot1,.foot2{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .foot1{
+      margin-top: 6.4vh;
+    }
+
+    .foot2{
+      margin-bottom: 4vh;
+    }
+    .foot-form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .foot-icon{
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 }

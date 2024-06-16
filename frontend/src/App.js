@@ -15,6 +15,7 @@ import Profile from './component/Profile';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import Footer from './component/Footer';
 
 const App = () => {
 
@@ -37,6 +38,7 @@ const App = () => {
   
             </Routes>
           </div>
+          <Footer />
         </div>
       </BrowserRouter>
     </div>
