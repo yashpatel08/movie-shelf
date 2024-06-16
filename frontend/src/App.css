@@ -383,6 +383,7 @@ input:focus{
 }
 
 
+
 .flex-row{
   display: flex;
   flex-direction: row;
@@ -536,6 +537,11 @@ input:focus{
       margin-top: 7.5vh;
       flex-direction: column;
       justify-content: center;
+    }
+
+    .res-nav{
+      z-index: 1;
+      background-color: black;
     }
 
     @keyframes smooth {
