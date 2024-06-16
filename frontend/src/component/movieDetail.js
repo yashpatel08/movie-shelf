@@ -89,7 +89,7 @@ const MovieDetail = () => {
 
     } catch (error) {
       console.error('Error adding movie to list:', error.message);
-      toast.error('⚠️ An error occurred while adding movie to list , try later');
+      toast.error('⚠️ An error occurred while adding movie to list , fill feedback form with in which feature it has error showing');
  
     }
   };
@@ -115,7 +115,7 @@ const MovieDetail = () => {
       console.error('Error removing movie from list:', error.message);
       console.log("movieId", movieId);
       console.log("userId", userId);
-      toast.error('⚠️ An error occurred while removing movie from list, try later'); 
+      toast.error('⚠️ An error occurred while removing movie from list, fill feedback form with in which feature it has error showing'); 
 
     }
   };

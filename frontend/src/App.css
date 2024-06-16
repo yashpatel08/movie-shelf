@@ -403,7 +403,7 @@ input:focus{
 .main-foot{
   margin-top: 5vh;
   display: flex;
-  height: 30vh;
+  height: 35vh;
   flex-direction: row;
   margin-bottom: 0;
   justify-content: space-evenly;

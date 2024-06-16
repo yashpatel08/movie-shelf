@@ -51,7 +51,7 @@ const Register = () => {
       }
     } catch (error) {
       console.log('Error during registration:', error);
-      toast.error('❌ An error occurred during registration. Please try with different email again.');
+      toast.error('❌ An error occurred during registration. fill feedback form with in which feature it has error showing');
     } finally {
       setLoading(false);
     }
