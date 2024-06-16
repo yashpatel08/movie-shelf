@@ -383,6 +383,21 @@ input:focus{
 }
 
 
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.delete{
+  margin-right: 3vh;
+}
+
+.delete:hover{
+  background-color: red;
+  color: black;
+}
+
 
 @media (max-width: 768px) {
 

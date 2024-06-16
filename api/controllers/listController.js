@@ -137,3 +137,20 @@ exports.removeUserFromList = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+exports.deleteEntireList = async (req,res) => {
+    try {
+        const listId=await List.findById(req.params.listId);
+
+        const deletedList = await List.findByIdAndDelete(listId);
+
+        if(!deletedList){
+            return res.status(404).json({ message : 'List not found'});
+        }
+
+        res.json({message: 'List deleted successfully'})
+    
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}

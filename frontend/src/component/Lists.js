@@ -42,6 +42,23 @@ const Lists = () => {
     }, [navigate, token]);
 
 
+    const deleteRoute = async (listId) => {
+ 
+        try {
+
+            const res = await axios.delete(`https://movie-shelfbackend.onrender.com/lists/remove-list/${listId}`);
+            setData(data.filter(list => list._id !== listId));
+            console.log('deleted', res);
+            toast.success('🎉 List deleted successfully');
+
+        } catch (error) {
+            console.log(error);
+            toast.error('⚠️ An error occurred while deleting list , try later');
+
+        }
+
+    }
+
     return (
         <div className='main-list'>
             <h2>Lists</h2>
@@ -53,7 +70,11 @@ const Lists = () => {
                         <div key={index} className='list'>
                             <div className="list1">
 
-                                <h3>List {index + 1}</h3>
+                                <div className='flex-row'>
+
+                                    <h3>List {index + 1}</h3>
+                                    <button className='delete' onClick={() => deleteRoute(list._id)}><i class="fa-solid fa-trash"></i></button>
+                                </div>
                                 <p>List Name: <span>{list.listname.replace(`_${list.user}`, '')}</span></p>
                                 {/* <p>User: {userdata.name}</p> */}
                                 <p>Visiblity: {list.visible}</p>

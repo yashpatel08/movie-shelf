@@ -7,7 +7,8 @@ const {
     addMovie,
     getAllPublicLists,
     deleteMovieFromList,
-    removeUserFromList
+    removeUserFromList,
+    deleteEntireList
 } = require('../controllers/listController');
 
 router.route('/lists/:userId').get(getList);
@@ -17,5 +18,5 @@ router.route('/addmovie').post(addMovie);
 router.route('/public').get(getAllPublicLists);
 router.route('/remove-movie/:userId/:movieId').delete(deleteMovieFromList);
 router.route('/remove-user/:listId/:userId').delete(removeUserFromList);
-
+router.route('/remove-list/:listId').delete(deleteEntireList);
 module.exports = router;
