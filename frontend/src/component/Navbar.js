@@ -19,7 +19,6 @@ const Navbar = () => {
     useEffect(() => {
         if(!token){
             navigate('/register');
-            return;
         }
 
         let decodedToken;

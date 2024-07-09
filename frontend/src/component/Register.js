@@ -44,6 +44,8 @@ const Register = () => {
 
             if (response.status === 200) {
                 toast.success('🎉 Registration successful!');
+                navigate('/login');
+
                 routeChange();
             } else {
                 toast.error('⚠️ Registration failed. Please try again.');
