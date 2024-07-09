@@ -17,7 +17,9 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        
+        if(!token){
+            navigate('/register');
+        }
 
         const decodedToken = jwtDecode(token);
 
