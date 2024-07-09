@@ -20,7 +20,6 @@ const Navbar = () => {
         console.log('Token:', token);
 
         if(!token){
-            navigate('/register');
             return;
         }
 
