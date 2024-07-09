@@ -29,7 +29,9 @@ const App = () => {
           <main className="flex-grow p-6">
             <ToastContainer theme="dark" />
             <Routes>
-              <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home />} />
+
+              <Route path='/home' element={<Home />} />
               <Route path='/movies' element={<MovieList />} />
               <Route path='/moviedetail/:imdbID' element={<MovieDetail />} />
               <Route path='/login' element={<Login />} />
