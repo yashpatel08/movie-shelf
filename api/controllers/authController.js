@@ -4,9 +4,11 @@ const User = require('../models/User');
 exports.Register = async (req, res) => {
     try {
         const newUser = await User.create(req.body);
+        await newUser.save();
+        const token = await newUser.generateAuthToken();
         res.status(200).json({
             status: 'success',
-            newUser,
+            newUser,token,
         });
     } catch (error) {
         if (error.code === 11000) {
