@@ -4,5 +4,8 @@
     "mongodb": "^6.7.0",
     "react-scripts": "^5.0.1",
     "react-toastify": "^10.0.5"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
   }
 }

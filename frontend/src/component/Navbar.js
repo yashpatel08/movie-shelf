@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from "jwt-decode";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const token = localStorage.getItem('jwttoken');
-    // const decodedToken = jwtDecode(token);
     const [isMenuClicked, setIsMenuClicked] = useState(false);
     const navigate = useNavigate();
-
 
     const toggleMenu = () => {
         setIsMenuClicked(!isMenuClicked);
@@ -19,22 +17,18 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-
         if (!token) {
-
-            let path = `/register`;
-            navigate(path);
+            navigate('/register');
             return;
         }
 
         const decodedToken = jwtDecode(token);
 
-
         const fetchUserData = async (userId) => {
             try {
-                const response = await fetch(`https://movie-shelfbackend.onrender.com/users/user/${userId}`, {});
+                const response = await fetch(`https://movie-shelfbackend.onrender.com/users/user/${userId}`);
                 if (response.ok) {
-                    const responseData = await response.data;
+                    const responseData = await response.json(); // Changed to json()
 
                     if (responseData.user) {
                         const userData = responseData.user;
@@ -51,64 +45,60 @@ const Navbar = () => {
             }
         };
 
-        // Call this function with the user ID obtained from the decoded token
         fetchUserData(decodedToken._id.toString());
-
-    }, []); 
+    }, [token, navigate]); // Added token and navigate as dependencies
 
     return (
-        <div className='main-nav'>
-            <div className='navbar'>
-                <h4 className='title'>MovieShelf</h4>
-                <Link to='/home' className='nav-items'>Home</Link>
-                <Link to='/lists' className='nav-items'>Lists</Link>
-                {isAdmin && (
-                    <div className="admin-section">
-                        <Link to="/admin/dashboard" className="nav-items">Admin Dashboard</Link>
-                    </div>
-                )}
+        <nav className="bg-gray-800 text-white p-4">
+            <div className="container mx-auto flex justify-between items-center">
+                <h4 className="text-2xl font-bold">MovieShelf</h4>
+                <div className="hidden md:flex space-x-4">
+                    <Link to='/home' className='hover:bg-gray-700 px-3 py-2 rounded'>Home</Link>
+                    <Link to='/lists' className='hover:bg-gray-700 px-3 py-2 rounded'>Lists</Link>
+                    {isAdmin && (
+                        <div className="hidden md:block">
+                            <Link to="/admin/dashboard" className="hover:bg-gray-700 px-3 py-2 rounded">Admin Dashboard</Link>
+                        </div>
+                    )}
+                    {token ? (
+                        <Link to="/profile" className='hover:bg-gray-700 px-3 py-2 rounded'>Profile</Link>
+                    ) : (
+                        <div className='flex space-x-4'>
+                            <Link to="/login" className='hover:bg-gray-700 px-3 py-2 rounded'>Login</Link>
+                            <Link to="/register" className='hover:bg-gray-700 px-3 py-2 rounded'>Register</Link>
+                        </div>
+                    )}
+                </div>
 
-                {token ? (
-                    <Link to="/profile" className='nav-items'>Profile</Link>
-                ) : (
-                    <div className='sub-items'>
-                        <Link to="/login" className='nav-items'>Login</Link>
-                        <Link to="/register" className='nav-items'>Register</Link>
-                    </div>
-                )}
-
-            </div>
-
-            <div className='res-container'>
-                <h4 className='title'>MovieShelf</h4>
-                <button className='toggle-btn' onClick={toggleMenu}>
+                <button
+                    className="md:hidden text-white text-2xl"
+                    onClick={toggleMenu}
+                >
                     <i className={isMenuClicked ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
                 </button>
             </div>
 
-
             {isMenuClicked && (
-                <div className='res-nav'>
-                    <Link to='/home' className='nav-items' onClick={closeMenu}>Home</Link>
-                    <Link to='/lists' className='nav-items' onClick={closeMenu}>Lists</Link>
+                <div className="md:hidden bg-gray-800 text-white p-4">
+                    <Link to='/home' className='block py-2 px-4 hover:bg-gray-700' onClick={closeMenu}>Home</Link>
+                    <Link to='/lists' className='block py-2 px-4 hover:bg-gray-700' onClick={closeMenu}>Lists</Link>
                     {isAdmin && (
-                        <div className="admin-section">
-                            <Link to="/admin/dashboard" className="nav-items" onClick={closeMenu}>Admin Dashboard</Link>
+                        <div className="block">
+                            <Link to="/admin/dashboard" className="block py-2 px-4 hover:bg-gray-700" onClick={closeMenu}>Admin Dashboard</Link>
                         </div>
                     )}
                     {token ? (
-                        <Link to="/profile" className='nav-items' onClick={closeMenu}>Profile</Link>
+                        <Link to="/profile" className='block py-2 px-4 hover:bg-gray-700' onClick={closeMenu}>Profile</Link>
                     ) : (
-                        <div className='sub-items'>
-                            <Link to="/login" className='nav-items' onClick={closeMenu}>Login</Link>
-                            <Link to="/register" className='nav-items' onClick={closeMenu}>Register</Link>
+                        <div className='flex flex-col'>
+                            <Link to="/login" className='block py-2 px-4 hover:bg-gray-700' onClick={closeMenu}>Login</Link>
+                            <Link to="/register" className='block py-2 px-4 hover:bg-gray-700' onClick={closeMenu}>Register</Link>
                         </div>
                     )}
                 </div>
             )}
+        </nav>
+    );
+};
 
-        </div>
-    )
-}
-
-export default Navbar   
+export default Navbar;

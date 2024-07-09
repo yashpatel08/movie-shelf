@@ -1,82 +1,115 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Register = () => {
-  const navigate = useNavigate();
-  const [name, setName] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [password, setPassword] = useState([]);
-  const [phone, setPhone] = useState([]);
-  const [cpassword, setCpassword] = useState([]);
-  const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [cpassword, setCpassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
-  const routeChange = () => {
-    let path = `/login`;
-    navigate(path);
-  }
+    const routeChange = () => {
+        navigate('/login');
+    };
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    e.preventDefault();
-
-    setLoading(true);
-
-    try {
-      if (cpassword === password) {
-        const response = await axios.post(`https://movie-shelfbackend.onrender.com/users/register`, {
-          name,
-          email,
-          password,
-          phone
-        }, {
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        });
-
-
-        if (response.status === 200) {
-          const result = await response.data;
-          console.log(result);
-          toast.success('🎉 Registration successful!');
-          routeChange();
-        } else {
-          const errorData = await response.json();
-          console.log('Error:', errorData);
+        if (password !== cpassword) {
+            toast.error('⚠️ Both passwords must be the same');
+            return;
         }
-      } else {
-        toast.error('⚠️ Both passwords must be the same');
-      }
-    } catch (error) {
-      console.log('Error during registration:', error);
-      toast.error('❌ An error occurred during registration. fill feedback form with in which feature it has error showing');
-    } finally {
-      setLoading(false);
-    }
-  }
 
-  return (
-    <div>
-      <div className='reg-container'>
-        <h2>Register</h2>
-        <form className='reg-form' onSubmit={handleSubmit}>
-          <input type='text' placeholder='Enter name' onChange={(e) => { setName(e.target.value) }} name='name' className='reg-item' />
-          <input type='email' placeholder='Email' onChange={(e) => { setEmail(e.target.value) }} name='email' className='reg-item' />
-          <input type='number' placeholder='number' onChange={(e) => { setPhone(e.target.value) }} name='phone' className='reg-item' />
-          <input type='password' placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} name='password' className='reg-item' />
-          <input type='password' placeholder='Confirm Password' onChange={(e) => { setCpassword(e.target.value) }} name='cpassword' className='reg-item' />
+        setLoading(true);
 
-          <button className='reg-btn' type='submit' disabled={loading}>
-            {loading ? 'Loading...' : 'Register'}
-          </button> 
-          <Link to="/login" className='login-btnn' >Already have an account! Login</Link>
+        try {
+            const response = await axios.post(
+                'https://movie-shelfbackend.onrender.com/users/register',
+                {
+                    name,
+                    email,
+                    password,
+                    phone
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
 
-        </form>
-      </div>
-    </div>
-  )
-}
+            if (response.status === 200) {
+                toast.success('🎉 Registration successful!');
+                routeChange();
+            } else {
+                toast.error('⚠️ Registration failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error during registration:', error);
+            toast.error('❌ An error occurred during registration. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-export default Register
+    return (
+        <div className="reg-container max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
+            <h2 className="text-2xl font-semibold mb-4">Register</h2>
+            <form className="reg-form" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Enter name"
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    className="reg-item mb-3 p-2 border rounded"
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    className="reg-item mb-3 p-2 border rounded"
+                />
+                <input
+                    type="tel"
+                    placeholder="Phone number"
+                    onChange={(e) => setPhone(e.target.value)}
+                    value={phone}
+                    className="reg-item mb-3 p-2 border rounded"
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    className="reg-item mb-3 p-2 border rounded"
+                />
+                <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    onChange={(e) => setCpassword(e.target.value)}
+                    value={cpassword}
+                    className="reg-item mb-3 p-2 border rounded"
+                />
+                <button
+                    className="reg-btn bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                    type="submit"
+                    disabled={loading}
+                >
+                    {loading ? 'Loading...' : 'Register'}
+                </button>
+                <div className="mt-4">
+                    <Link to="/login" className="login-btn text-blue-500 hover:underline">
+                        Already have an account? Login
+                    </Link>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default Register;

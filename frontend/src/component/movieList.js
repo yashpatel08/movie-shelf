@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 const MovieList = () => {
     const [data, setData] = useState([]);
     const [name, setName] = useState('');
     const [result, setResults] = useState('');
     const navigate = useNavigate();
+
     const changeName = (e) => {
         setName(e.target.value);
     };
@@ -56,8 +57,6 @@ const MovieList = () => {
         }
     }, []);
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         fetchData(name);
@@ -69,38 +68,52 @@ const MovieList = () => {
         }
     }, [name]);
 
-
     const directTo = (imdbID) => {
         navigate(`/moviedetail/${imdbID}`);
         console.log('from list', imdbID);
     };
 
     return (
-        <div className="App">
-            <div>
-                <form onSubmit={handleSubmit} className='form'>
+        <div className="min-h-screen bg-gray-100 p-6">
+            <div className="max-w-md mx-auto">
+                <form onSubmit={handleSubmit} className="flex flex-col mb-6">
                     <input
                         type="text"
                         placeholder="Enter movie name"
                         onChange={changeName}
                         value={name}
-                        className='search'
+                        className="p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                    <button className='submit-btn' type="submit">Search</button>
+                    <button
+                        className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition ease-in-out"
+                        type="submit"
+                    >
+                        Search
+                    </button>
                 </form>
             </div>
-            <h4 className='totalcount'>
-                Total Results :  {result}
+            <h4 className="text-center text-lg font-semibold mb-4">
+                Total Results: {result}
             </h4>
             {data.length > 0 && (
-                <div className='movie-list'>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {data.map((movie, index) => (
-                        <div key={index} onClick={() => (directTo(movie.imdbID))} className='movie'>
-                            <h2>{movie.Title}</h2>
-                            <img src={movie.Poster} alt={`${movie.Title} poster`} />
-                            <div className="detail">
-                                <p>Year: {movie.Year}</p>
-                                <p>Type: {movie.Type}</p>
+                        <div
+                            key={index}
+                            onClick={() => directTo(movie.imdbID)}
+                            className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition ease-in-out"
+                        >
+                            <img
+                                src={movie.Poster}
+                                alt={`${movie.Title} poster`}
+                                className="w-full h-48 object-cover"
+                            />
+                            <div className="p-4">
+                                <h2 className="text-xl font-semibold mb-2">{movie.Title}</h2>
+                                <div className="text-sm text-gray-600">
+                                    <p>Year: {movie.Year}</p>
+                                    <p>Type: {movie.Type}</p>
+                                </div>
                             </div>
                         </div>
                     ))}

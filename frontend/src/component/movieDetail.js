@@ -20,11 +20,9 @@ const MovieDetail = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        console.log(imdbID);
         const response = await fetch(`https://www.omdbapi.com/?apikey=a4fbb6db&i=${imdbID}`);
         const data = await response.json();
         setMovie(data);
-        console.log(data);
       } catch (error) {
         console.error('Error fetching movie details:', error);
       }
@@ -44,7 +42,7 @@ const MovieDetail = () => {
 
   }, [imdbID]);
 
-  const addToList = async (movieId) => {
+  const addToList = (movieId) => {
     setSelectedMovie(movieId);
     setShowModal(true);
   };
@@ -58,18 +56,16 @@ const MovieDetail = () => {
     setIsPublic(!isPublic); // Toggle the value of isPublic
   };
 
-
   const addInList = async () => {
     try {
       setLoading(true);
-      console.log("id", userId);
       if (!token) {
         navigate('/login');
         console.error('No token found');
         return;
       }
 
-      const response = await axios.post(`https://movie-shelfbackend.onrender.com/lists/addmovie`, {
+      const response = await axios.post('https://movie-shelfbackend.onrender.com/lists/addmovie', {
         listname: listName,
         movieId: imdbID,
         moviename: movie.Title,
@@ -81,16 +77,12 @@ const MovieDetail = () => {
           'Authorization': `Bearer ${token}`
         }
       });
-      const data = await response.data;
-      console.log('in addinlist', data);
       handleCloseModal();
       setLoading(false);
       toast.success('🎉 Movie added to list successfully');
-
     } catch (error) {
       console.error('Error adding movie to list:', error.message);
-      toast.error('⚠️ An error occurred while adding movie to list , fill feedback form with in which feature it has error showing');
- 
+      toast.error('⚠️ An error occurred while adding movie to list');
     }
   };
 
@@ -107,87 +99,99 @@ const MovieDetail = () => {
           'Authorization': `Bearer ${token}`
         }
       });
-      const data = await response.data;
-      console.log('Movie removed successfully', data);
       toast.success('🎉 Movie removed from list successfully');
-
     } catch (error) {
       console.error('Error removing movie from list:', error.message);
-      console.log("movieId", movieId);
-      console.log("userId", userId);
-      toast.error('⚠️ An error occurred while removing movie from list, fill feedback form with in which feature it has error showing'); 
-
+      toast.error('⚠️ An error occurred while removing movie from list');
     }
   };
+
   return (
-    <div className="movie-detail">
+    <div className="min-h-screen bg-gray-100 p-6">
       {movie ? (
-        <div className='movieDetail'>
-          <h2>{movie.Title}</h2>
-          <div className='detail-container'>
-
-            <div className="left">
-
-              <img src={movie.Poster} alt={`${movie.Title} poster`} />
-              <p>IMDb Rating: <span>
-                {movie.imdbRating}</span></p>
-
+        <div className="bg-white rounded-lg shadow-lg p-6 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4">{movie.Title}</h2>
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-1/3 mb-4 md:mb-0">
+              <img
+                src={movie.Poster}
+                alt={`${movie.Title} poster`}
+                className="w-full h-auto rounded-lg shadow-md"
+              />
+              <p className="mt-2 text-sm text-gray-600">IMDb Rating: <span className="font-semibold">{movie.imdbRating}</span></p>
             </div>
-            <div className="right">
-
-              <p>Actors: <span>{movie.Actors}</span></p>
-              <p>Awards: <span>{movie.Awards}</span></p>
-              <p>Box Office: <span>{movie.BoxOffice}</span></p>
-              <p>Country: <span>{movie.Country}</span></p>
-              <p>Director: <span>{movie.Director}</span></p>
-              <p>Genre: <span>{movie.Genre}</span></p>
-              <p>Language: <span>{movie.Language}</span></p>
-              <p>Metascore: <span>{movie.Metascore}</span></p>
-              <p>Plot: <span>{movie.Plot}</span></p>
-              <p>Released: <span>{movie.Released}</span></p>
-              <p>Runtime: <span>{movie.Runtime}</span></p>
-              <p>Year: <span>{movie.Year}</span></p>
-              <p>IMDb Votes: <span>{movie.imdbVotes}</span></p>
+            <div className="md:w-2/3 pl-0 md:pl-6">
+              <p className="text-sm mb-2">Actors: <span className="font-semibold">{movie.Actors}</span></p>
+              <p className="text-sm mb-2">Awards: <span className="font-semibold">{movie.Awards}</span></p>
+              <p className="text-sm mb-2">Box Office: <span className="font-semibold">{movie.BoxOffice}</span></p>
+              <p className="text-sm mb-2">Country: <span className="font-semibold">{movie.Country}</span></p>
+              <p className="text-sm mb-2">Director: <span className="font-semibold">{movie.Director}</span></p>
+              <p className="text-sm mb-2">Genre: <span className="font-semibold">{movie.Genre}</span></p>
+              <p className="text-sm mb-2">Language: <span className="font-semibold">{movie.Language}</span></p>
+              <p className="text-sm mb-2">Metascore: <span className="font-semibold">{movie.Metascore}</span></p>
+              <p className="text-sm mb-2">Plot: <span className="font-semibold">{movie.Plot}</span></p>
+              <p className="text-sm mb-2">Released: <span className="font-semibold">{movie.Released}</span></p>
+              <p className="text-sm mb-2">Runtime: <span className="font-semibold">{movie.Runtime}</span></p>
+              <p className="text-sm mb-2">Year: <span className="font-semibold">{movie.Year}</span></p>
+              <p className="text-sm mb-2">IMDb Votes: <span className="font-semibold">{movie.imdbVotes}</span></p>
             </div>
           </div>
 
-          <div className="other-details">
-            <div className="other1">
-
-              <h4>Plot</h4>
-              <p>{movie.Plot}</p>
-
-              <h4>Run Time</h4>
-              <p>{movie.Runtime}</p>
-
-            </div>
-            <div className="other2">
-              <button className='fav-button' onClick={() => addToList(imdbID)}>Add To List</button>
-              <button className='rem-button' onClick={() => removeMovieFromList(userId, imdbID)}>Remove from list</button>
-
+          <div className="mt-6 flex justify-between">
+            <div>
+              <button
+                className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition ease-in-out"
+                onClick={() => addToList(imdbID)}
+              >
+                Add To List
+              </button>
+              <button
+                className="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition ease-in-out ml-4"
+                onClick={() => removeMovieFromList(userId, imdbID)}
+              >
+                Remove from List
+              </button>
             </div>
           </div>
         </div>
-
       ) : (
-        <p>Loading... OR try to refresh</p>
+        <p className="text-center text-gray-600">Loading... OR try to refresh</p>
       )}
 
       {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <button className='x-button' onClick={() => handleCloseModal(imdbID)}>X</button>
-            <h2>{movie.Title}</h2>
-            <p>Id: {selectedMovie} </p>
-            <input type="text" placeholder='Enter list name' onChange={(e) => setListName(e.target.value)} />
-            <label>
-              <input type="checkbox" checked={isPublic} onChange={handleCheckboxChange} />
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto relative">
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+              onClick={handleCloseModal}
+            >
+              X
+            </button>
+            <h2 className="text-2xl font-semibold mb-4">{movie.Title}</h2>
+            <p className="mb-4">Id: {selectedMovie}</p>
+            <input
+              type="text"
+              placeholder="Enter list name"
+              onChange={(e) => setListName(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md mb-4"
+              required
+            />
+            <label className="flex items-center mb-4">
+              <input
+                type="checkbox"
+                checked={isPublic}
+                onChange={handleCheckboxChange}
+                className="mr-2"
+              />
               Public List
             </label>
-            <button className='add-button' onClick={() => addInList(imdbID)}>
-            {loading ? 'Please Wait...' : 'Add'}
+            <button
+              className={`w-full py-2 rounded-md text-white ${loading ? 'bg-gray-600' : 'bg-blue-600 hover:bg-blue-700'} transition ease-in-out`}
+              onClick={addInList}
+              disabled={loading}
+            >
+              {loading ? 'Please Wait...' : 'Add'}
             </button>
-
           </div>
         </div>
       )}
@@ -195,4 +199,4 @@ const MovieDetail = () => {
   );
 };
 
-export default MovieDetail
+export default MovieDetail;
