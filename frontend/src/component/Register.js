@@ -44,7 +44,7 @@ const Register = () => {
 
             if (response.status === 200) {
 
-                const { token } = response;
+                const { token } = response.data;
                 
                 // Save the token to localStorage
                 localStorage.setItem('jwttoken', token);
