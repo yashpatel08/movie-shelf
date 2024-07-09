@@ -19,6 +19,7 @@ const Navbar = () => {
     useEffect(() => {
         if(!token){
             navigate('/register');
+            return;
         }
 
         const decodedToken = jwtDecode(token);
@@ -27,7 +28,7 @@ const Navbar = () => {
             try {
                 const response = await fetch(`https://movie-shelfbackend.onrender.com/users/user/${userId}`);
                 if (response.ok) {
-                    const responseData = await response.json(); // Changed to json()
+                    const responseData = await response.json();  
 
                     if (responseData.user) {
                         const userData = responseData.user;
@@ -41,12 +42,12 @@ const Navbar = () => {
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error.message);
+                navigate('/register');
             }
         };
 
         fetchUserData(decodedToken._id.toString());
-    }, [token, navigate]); // Added token and navigate as dependencies
-
+    }, [token, navigate]);  
     return (
         <nav className="bg-gray-800 text-white p-4">
             <div className="container mx-auto flex justify-between items-center">
