@@ -17,6 +17,8 @@ const Navbar = () => {
     };
 
     useEffect(() => {
+        console.log('Token:', token);
+        
         if(!token){
             navigate('/register');
         }
