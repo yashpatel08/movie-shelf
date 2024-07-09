@@ -22,7 +22,14 @@ const Navbar = () => {
             return;
         }
 
-        const decodedToken = jwtDecode(token);
+        let decodedToken;
+        try {
+            decodedToken = jwtDecode(token);
+        } catch (error) {
+            console.error('Error decoding token:', error.message);
+            navigate('/register');
+            return;
+        }
 
         const fetchUserData = async (userId) => {
             try {
