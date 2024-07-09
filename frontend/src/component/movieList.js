@@ -76,16 +76,16 @@ const MovieList = () => {
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             <div className="max-w-md mx-auto">
-                <form onSubmit={handleSubmit} className="flex flex-col mb-6">
+                <form onSubmit={handleSubmit} className="flex flex-col mb-6 w-full justify-center items-center">
                     <input
                         type="text"
                         placeholder="Enter movie name"
                         onChange={changeName}
                         value={name}
-                        className="p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="p-2 border w-[50vh] border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <button
-                        className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition ease-in-out"
+                        className="bg-blue-600 text-white w-[20vh] py-2 px-4 rounded-md hover:bg-blue-700 transition ease-in-out"
                         type="submit"
                     >
                         Search
@@ -106,7 +106,7 @@ const MovieList = () => {
                             <img
                                 src={movie.Poster}
                                 alt={`${movie.Title} poster`}
-                                className="w-full h-48 object-cover"
+                                className="w-full h-[60vh] object-cover" 
                             />
                             <div className="p-4">
                                 <h2 className="text-xl font-semibold mb-2">{movie.Title}</h2>

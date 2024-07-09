@@ -51,9 +51,9 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-8">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 justify-center">
           <div>
-            <h3 className="text-2xl font-semibold mb-4">Feedback</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-center">Feedback</h3>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -68,7 +68,9 @@ const Footer = () => {
                 type="email"
                 placeholder="Email"
                 className="w-full p-3 border border-gray-600 rounded-lg bg-gray-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={feedback.email_id}
                 name="email_id"
+                onChange={handleInputChange}
                 required
               />
               <textarea
@@ -79,7 +81,7 @@ const Footer = () => {
                 onChange={handleInputChange}
                 required
               />
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-center">
                 <button
                   className={`px-6 py-2 rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition ease-in-out ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                   type="submit"
@@ -96,10 +98,10 @@ const Footer = () => {
             </form>
           </div>
 
-          <div>
+          <div className="flex flex-col justify-center text-center">
             <h4 className="text-xl font-semibold mb-2">Made by Yash</h4>
             <h5 className="text-lg mb-4">Let's Connect</h5>
-            <div className="flex space-x-4">
+            <div className="flex justify-center space-x-4">
               <a
                 href="https://github.com/yashpatel08"
                 className="text-gray-400 hover:text-white transition ease-in-out"
@@ -128,5 +130,6 @@ const Footer = () => {
     </footer>
   );
 };
+
 
 export default Footer;

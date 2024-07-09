@@ -50,7 +50,6 @@ const Navbar = () => {
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error.message);
-                navigate('/register');
             }
         };
 

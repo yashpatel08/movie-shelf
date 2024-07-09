@@ -108,52 +108,53 @@ const MovieDetail = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      {movie ? (
-        <div className="bg-white rounded-lg shadow-lg p-6 max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">{movie.Title}</h2>
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/3 mb-4 md:mb-0">
-              <img
-                src={movie.Poster}
-                alt={`${movie.Title} poster`}
-                className="w-full h-auto rounded-lg shadow-md"
-              />
-              <p className="mt-2 text-sm text-gray-600">IMDb Rating: <span className="font-semibold">{movie.imdbRating}</span></p>
-            </div>
-            <div className="md:w-2/3 pl-0 md:pl-6">
-              <p className="text-sm mb-2">Actors: <span className="font-semibold">{movie.Actors}</span></p>
-              <p className="text-sm mb-2">Awards: <span className="font-semibold">{movie.Awards}</span></p>
-              <p className="text-sm mb-2">Box Office: <span className="font-semibold">{movie.BoxOffice}</span></p>
-              <p className="text-sm mb-2">Country: <span className="font-semibold">{movie.Country}</span></p>
-              <p className="text-sm mb-2">Director: <span className="font-semibold">{movie.Director}</span></p>
-              <p className="text-sm mb-2">Genre: <span className="font-semibold">{movie.Genre}</span></p>
-              <p className="text-sm mb-2">Language: <span className="font-semibold">{movie.Language}</span></p>
-              <p className="text-sm mb-2">Metascore: <span className="font-semibold">{movie.Metascore}</span></p>
-              <p className="text-sm mb-2">Plot: <span className="font-semibold">{movie.Plot}</span></p>
-              <p className="text-sm mb-2">Released: <span className="font-semibold">{movie.Released}</span></p>
-              <p className="text-sm mb-2">Runtime: <span className="font-semibold">{movie.Runtime}</span></p>
-              <p className="text-sm mb-2">Year: <span className="font-semibold">{movie.Year}</span></p>
-              <p className="text-sm mb-2">IMDb Votes: <span className="font-semibold">{movie.imdbVotes}</span></p>
-            </div>
-          </div>
-
-          <div className="mt-6 flex justify-between">
-            <div>
-              <button
-                className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition ease-in-out"
-                onClick={() => addToList(imdbID)}
-              >
-                Add To List
-              </button>
-              <button
-                className="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition ease-in-out ml-4"
-                onClick={() => removeMovieFromList(userId, imdbID)}
-              >
-                Remove from List
-              </button>
-            </div>
-          </div>
+  {movie ? (
+    <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto"> {/* Adjusted max-w-4xl */}
+      <h2 className="text-4xl font-bold mb-6 text-center">{movie.Title}</h2> {/* Increased font size */}
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/3 mb-4 md:mb-0">
+          <img
+            src={movie.Poster}
+            alt={`${movie.Title} poster`}
+            className="w-full h-auto rounded-lg shadow-md"
+          />
+          <p className="mt-2 text-lg text-gray-600">IMDb Rating: <span className="font-semibold">{movie.imdbRating}</span></p> {/* Increased font size */}
         </div>
+        <div className="md:w-2/3 pl-0 md:pl-6">
+          {/* Adjust other text sizes similarly */}
+          <p className="text-lg mb-2">Actors: <span className="font-semibold">{movie.Actors}</span></p>
+          <p className="text-lg mb-2">Awards: <span className="font-semibold">{movie.Awards}</span></p>
+          <p className="text-lg mb-2">Box Office: <span className="font-semibold">{movie.BoxOffice}</span></p>
+          <p className="text-lg mb-2">Country: <span className="font-semibold">{movie.Country}</span></p>
+          <p className="text-lg mb-2">Director: <span className="font-semibold">{movie.Director}</span></p>
+          <p className="text-lg mb-2">Genre: <span className="font-semibold">{movie.Genre}</span></p>
+          <p className="text-lg mb-2">Language: <span className="font-semibold">{movie.Language}</span></p>
+          <p className="text-lg mb-2">Metascore: <span className="font-semibold">{movie.Metascore}</span></p>
+          <p className="text-lg mb-2">Plot: <span className="font-semibold">{movie.Plot}</span></p>
+          <p className="text-lg mb-2">Released: <span className="font-semibold">{movie.Released}</span></p>
+          <p className="text-lg mb-2">Runtime: <span className="font-semibold">{movie.Runtime}</span></p>
+          <p className="text-lg mb-2">Year: <span className="font-semibold">{movie.Year}</span></p>
+          <p className="text-lg mb-2">IMDb Votes: <span className="font-semibold">{movie.imdbVotes}</span></p>
+        </div>
+      </div>
+
+      <div className="mt-8 flex justify-between items-center">
+        <div >
+          <button
+            className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition ease-in-out"
+            onClick={() => addToList(imdbID)}
+          >
+            Add To List
+          </button>
+          <button
+            className="bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-700 transition ease-in-out ml-4"
+            onClick={() => removeMovieFromList(userId, imdbID)}
+          >
+            Remove from List
+          </button>
+        </div>
+      </div>
+    </div>
       ) : (
         <p className="text-center text-gray-600">Loading... OR try to refresh</p>
       )}
