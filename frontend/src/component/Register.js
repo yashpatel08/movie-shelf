@@ -43,7 +43,14 @@ const Register = () => {
             );
 
             if (response.status === 200) {
+
+                const { token } = response;
+                
+                // Save the token to localStorage
+                localStorage.setItem('jwttoken', token);
+
                 toast.success('🎉 Registration successful!');
+
                 navigate('/login');
 
             } else {

@@ -10,6 +10,7 @@ exports.Register = async (req, res) => {
             status: 'success',
             newUser,token,
         });
+        console.log(res);
     } catch (error) {
         if (error.code === 11000) {
             // Duplicate key error (email already exists)
