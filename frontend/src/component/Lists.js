@@ -57,6 +57,11 @@ const Lists = () => {
         }
     }
 
+    const handleMovieDetail = (imdbID) => {
+        navigate(`/moviedetail/${imdbID}`);
+        console.log('from list', imdbID);
+    };
+
     return (
         <div className="min-h-screen bg-gray-100 py-6 px-4">
             <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
@@ -81,7 +86,10 @@ const Lists = () => {
                                 <ul className="list-disc pl-5">
                                     {list.movies && list.movies.length > 0 ? (
                                         list.movies.map((movie, movieIndex) => (
-                                            <li key={movieIndex} className="text-gray-700">{movie.moviename}</li>
+                                            <div key={movieIndex} className="flex items-center justify-between p-4 bg-gray-100 mb-3 rounded shadow hover:bg-gray-200 cursor-pointer">
+                                                <li onClick={() => handleMovieDetail(movie.movieId)} className="flex-1 text-gray-700 list-none ">{movie.moviename}</li>
+                                                <p className="text-blue-500 ml-4"  ><i class="fa-solid fa-circle-info"></i></p>
+                                            </div>
                                         ))
                                     ) : (
                                         <p className="text-gray-500">Please add movies to the list.</p>

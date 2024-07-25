@@ -76,7 +76,7 @@ const MovieList = () => {
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             <div className="max-w-md mx-auto">
-                <form onSubmit={handleSubmit} className="flex flex-col mb-6 w-full justify-center items-center w-full">
+                <form onSubmit={handleSubmit} className="flex flex-col mb-6 w-full justify-center items-center">
                     <input
                         type="text"
                         placeholder="Enter movie name"
