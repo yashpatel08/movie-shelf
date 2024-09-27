@@ -19,15 +19,7 @@ const Navbar = () => {
     useEffect(() => {
         console.log('Token:', token);
 
-        let decodedToken;
-        try {
-            decodedToken = jwtDecode(token);
-        } catch (error) {
-            console.error('Error decoding token:', error.message);
-            navigate('/register');
-            return;
-        }
-
+        
         const fetchUserData = async (userId) => {
             try {
                 const response = await fetch(`https://movie-shelfbackend.onrender.com/users/user/${userId}`);
