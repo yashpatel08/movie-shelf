@@ -19,7 +19,6 @@ const Navbar = () => {
     useEffect(() => {
         console.log('Token:', token);
 
-        
         const fetchUserData = async (userId) => {
             try {
                 const response = await fetch(`https://movie-shelfbackend.onrender.com/users/user/${userId}`);
