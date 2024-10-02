@@ -20,15 +20,16 @@ const Navbar = () => {
         console.log('Token:', token);
 
  
-        // if (!token) {
-        //     navigate('/register');
-        //     return;
-        // }
-
+        if (!token) {
+            // Allow access to login and register if no token is present
+            console.log("No token, allowing access to public pages");
+            return; // Don't try to decode or fetch data if there's no token
+        }
 
         let decodedToken;
         try {
             decodedToken = jwtDecode(token);
+            console.log('Token:', decodedToken);
         } catch (error) {
             console.error('Error decoding token:', error.message);
             navigate('/login');
