@@ -19,10 +19,10 @@ const Navbar = () => {
     useEffect(() => {
         console.log('Token:', token);
 
-        if (!token) {
-            navigate('/register');
-            return;
-        }
+        // if (!token) {
+        //     navigate('/register');
+        //     return;
+        // }
 
 
         let decodedToken;
