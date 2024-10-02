@@ -19,6 +19,7 @@ const Navbar = () => {
     useEffect(() => {
         console.log('Token:', token);
 
+ 
         // if (!token) {
         //     navigate('/register');
         //     return;
@@ -33,7 +34,7 @@ const Navbar = () => {
             navigate('/login');
             return;
         }
-
+ 
         const fetchUserData = async (userId) => {
             try {
                 const response = await fetch(`https://movie-shelfbackend.onrender.com/users/user/${userId}`);
