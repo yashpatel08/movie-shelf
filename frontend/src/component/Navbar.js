@@ -30,7 +30,7 @@ const Navbar = () => {
             decodedToken = jwtDecode(token);
         } catch (error) {
             console.error('Error decoding token:', error.message);
-            navigate('/register');
+            navigate('/login');
             return;
         }
 
